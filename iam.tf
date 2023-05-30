@@ -9,6 +9,8 @@ data "aws_iam_policy_document" "workspaces" {
   }
 }
 
+#using 'workspaces-temporary' as i already have 'workspaces-default'.
+
 resource "aws_iam_role" "workspaces-temporary" {
   name = "workspaces_temporaryRole"
   assume_role_policy = data.aws_iam_policy_document.workspaces.json
