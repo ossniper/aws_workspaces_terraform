@@ -1,9 +1,9 @@
 
 #Create a AWS managed Directory AD
-resource "aws_directory_service_directory" "os-cloud-ad" {
-  name     = "corp.osmancloud.net"
-  description = "Oscloudnet ManagedAD for Workspaces"
-  password = "Osman@1234567"
+resource "aws_directory_service_directory" "my-cloud-ad" {
+  name     = "corp.mycloud.net"
+  description = "mycloudnet ManagedAD for Workspaces"
+  password = "Pass@12345"
   edition     = "Standard"
   type     = "MicrosoftAD"
 
@@ -30,12 +30,12 @@ resource "aws_subnet" "b" {
 #DHCP option set
 
 resource "aws_vpc_dhcp_options" "dns_resolver" {
-  domain_name_servers = aws_directory_service_directory.os-cloud-ad.dns_ip_addresses
-  domain_name = "osmancloud.net"
+  domain_name_servers = aws_directory_service_directory.my-cloud-ad.dns_ip_addresses
+  domain_name = "mycloud.net"
   #ntp_servers = [""]
   tags = {
     Name = "dhcp-set"
-    value = "osmancloud"
+    value = "mycloud_dns"
   }
 }
 resource "aws_vpc_dhcp_options_association" "dns_resolver" {
